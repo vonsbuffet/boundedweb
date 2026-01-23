@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bounded - Architectural Visualization</title>
+    <style>
+        /* --- RESET & BASE STYLES --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            /* 1. Off-white Background */
+            background-color: #FAFAF9; 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            
+            /* 2. Non-Scrolling / Full Height Center */
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden; 
+            
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* --- LOGO --- */
+        .logo-container {
+            /* INCREASED from 60px to 100px to push buttons down */
+            margin-bottom: 100px;
+            
+            /* Fade-in animation */
+            animation: fadeIn 1.5s ease-out; 
+        }
+
+        .logo {
+            /* INCREASED from 250px to 350px */
+            width: 350px; 
+            height: auto;
+            display: block;
+        }
+
+        /* --- BUTTON CONTAINER --- */
+        .button-container {
+            display: flex;
+            gap: 20px;
+            animation: slideUp 1.2s ease-out;
+        }
+
+        /* --- STORE BUTTONS --- */
+        .store-btn {
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 180px;
+            height: 55px;
+            background-color: #000;
+            color: #fff;
+            border-radius: 10px;
+            border: 2px solid #000;
+            transition: all 0.3s ease;
+        }
+
+        .store-btn:hover {
+            background-color: #fff;
+            color: #000;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .btn-text {
+            text-align: left;
+            line-height: 1.2;
+        }
+
+        .small-txt {
+            font-size: 10px;
+            text-transform: uppercase;
+            display: block;
+        }
+
+        .big-txt {
+            font-size: 18px;
+            font-weight: bold;
+            display: block;
+        }
+
+        .icon {
+            font-size: 24px;
+            margin-right: 12px;
+        }
+
+        /* --- ANIMATIONS --- */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- MOBILE RESPONSIVENESS --- */
+        /* This ensures it looks good on phones */
+        @media (max-width: 600px) {
+            .button-container {
+                flex-direction: column; /* Stack buttons vertically */
+            }
+            
+            /* Optional: Make logo slightly smaller on very small phones so it fits */
+            .logo {
+                width: 280px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="logo-container">
+        <img src="logo.png" alt="Bounded App Logo" class="logo">
+    </div>
+
+    <div class="button-container">
+        
+        <a href="#" class="store-btn">
+            <span class="icon">&#63743;</span> 
+            <div class="btn-text">
+                <span class="small-txt">Download on the</span>
+                <span class="big-txt">App Store</span>
+            </div>
+        </a>
+
+        <a href="#" class="store-btn">
+            <span class="icon">&#9658;</span> 
+            <div class="btn-text">
+                <span class="small-txt">Get it on</span>
+                <span class="big-txt">Google Play</span>
+            </div>
+        </a>
+
+    </div>
+
+</body>
+</html>

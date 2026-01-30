@@ -26,12 +26,12 @@
 
         /* --- LOGO --- */
         .logo-container {
-            margin-bottom: 100px; /* High spacing as requested */
+            margin-bottom: 100px; 
             animation: fadeIn 1.5s ease-out; 
         }
 
         .logo {
-            width: 350px; /* Large size as requested */
+            width: 350px; 
             height: auto;
             display: block;
         }
@@ -110,6 +110,74 @@
                 width: 280px;
             }
         }
+        
+        /* --- FOOTER & PRIVACY STYLES --- */
+        footer {
+            position: absolute;
+            bottom: 20px;
+            font-size: 12px;
+            color: #A8A29E;
+        }
+
+        footer a {
+            color: #A8A29E;
+            text-decoration: none;
+            margin: 0 10px;
+            cursor: pointer;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+            color: #000;
+        }
+
+        #privacy-modal {
+            display: none; /* Hidden by default */
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(250, 250, 249, 1.0); /* Solid background for readability */
+            overflow-y: auto;
+            padding: 60px 20px;
+            z-index: 1000;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .modal-content {
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+            color: #333;
+            font-size: 14px;
+        }
+        
+        .modal-content h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        
+        .modal-content h2 {
+            font-size: 16px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            color: #000;
+        }
+
+        .close-btn {
+            display: inline-block;
+            margin-bottom: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 10px 0;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s;
+        }
+        
+        .close-btn:hover {
+            border-bottom: 1px solid #000;
+        }
     </style>
 </head>
 <body>
@@ -139,6 +207,57 @@
         </a>
 
     </div>
+    
+    <footer>
+        <p>&copy; 2026 Bounded. <a onclick="togglePrivacy()">Privacy Policy</a></p>
+    </footer>
+
+    <div id="privacy-modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="togglePrivacy()">← Back to Home</span>
+            
+            <h1>Privacy Policy</h1>
+            <p><strong>Last Updated: January 29, 2026</strong></p>
+            <br>
+            <p>We respect your privacy. This policy explains the privacy practices for the "Bounded" mobile application.</p>
+
+            <h2>1. Information Collection</h2>
+            <p>Bounded is a standalone utility application. We do not collect, store, transmit, or share any personally identifiable information (PII) or usage data from users.</p>
+
+            <h2>2. App Permissions & Data Usage</h2>
+            <p>The app performs all calculations and visualizations locally on your device. Any data entered into the app (such as measurements or conversion values) remains strictly on your device and is not transmitted to external servers.</p>
+
+            <h2>3. Third-Party Services</h2>
+            <p>Bounded does not use third-party analytics, tracking services, or advertising networks. We do not share data with any external organizations.</p>
+
+            <h2>4. Children’s Privacy</h2>
+            <p>Since our application does not collect any data, it is safe for users of all ages. We do not knowingly collect personal information from children under the age of 13.</p>
+
+            <h2>5. Changes to This Policy</h2>
+            <p>We may update our Privacy Policy from time to time. You are advised to review this page periodically for any changes. Changes are effective immediately after they are posted on this page.</p>
+
+            <h2>6. Contact Us</h2>
+            <p>If you have any questions or suggestions about our Privacy Policy, do not hesitate to contact us at <strong>support@bounded.ca</strong>.</p>
+            
+            <br><br><br>
+        </div>
+    </div>
+
+    <script>
+        function togglePrivacy() {
+            const modal = document.getElementById('privacy-modal');
+            modal.style.display = (modal.style.display === 'block') ? 'none' : 'block';
+            
+            // Optional: Freeze body scrolling when modal is open
+            if (modal.style.display === 'block') {
+                document.body.style.overflow = 'hidden'; 
+                // Allow scrolling inside modal
+                modal.style.overflowY = 'auto'; 
+            } else {
+                document.body.style.overflow = 'hidden'; // Keep main page locked
+            }
+        }
+    </script>
 
 </body>
 </html>

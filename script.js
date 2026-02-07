@@ -40,7 +40,7 @@ function createShapes() {
         // Randomize
         let size = Math.random() * 50 + 20; 
         let posX = Math.random() * 100; 
-        let delay = Math.random() * 15; 
+        let delay = Math.random() * -20; 
         let duration = Math.random() * 10 + 10; 
         let isCircle = Math.random() > 0.5;
 

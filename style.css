@@ -12,7 +12,7 @@ body {
     line-height: 1.6;
     min-height: 100vh;
     position: relative;
-    padding-bottom: 60px; /* Space for footer */
+    padding-bottom: 80px; /* Space for footer */
 }
 
 a { text-decoration: none; color: inherit; }
@@ -24,11 +24,13 @@ nav {
     align-items: center;
     padding: 20px 40px;
     width: 100%;
-    z-index: 100;
+    z-index: 1000;
+    background-color: transparent; /* Transparent on desktop */
 }
 
-.nav-brand { font-weight: bold; font-size: 20px; letter-spacing: 1px; }
+.nav-brand { font-weight: bold; font-size: 20px; letter-spacing: 1px; z-index: 1001; }
 
+/* Desktop Menu */
 .nav-links { display: flex; gap: 30px; }
 
 .nav-links a {
@@ -40,6 +42,15 @@ nav {
 }
 
 .nav-links a:hover, .nav-links a.active { color: #000; font-weight: bold; }
+
+/* Hamburger Icon (Hidden on Desktop) */
+.hamburger {
+    display: none; 
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 1001;
+    user-select: none;
+}
 
 /* --- HOME PAGE ANIMATION --- */
 .shape {
@@ -57,8 +68,26 @@ nav {
     100% { transform: translateY(-20vh) rotate(360deg) scale(1.2); opacity: 0; }
 }
 
+/* --- LOGO & HOME LAYOUT --- */
+.home-container {
+    min-height: 80vh; /* Takes up most of screen */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.logo {
+    width: 350px;
+    max-width: 80vw; /* Responsive: Never wider than 80% of screen */
+    height: auto;
+    display: block;
+    margin-bottom: 40px;
+}
+
 /* --- STORE BUTTONS --- */
-.button-container { display: flex; gap: 20px; margin-top: 40px; }
+.button-container { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
 .store-btn {
     display: inline-flex; align-items: center; justify-content: center;
     width: 180px; height: 55px; background-color: #000; color: #fff;
@@ -77,7 +106,7 @@ nav {
     padding: 0 20px;
 }
 
-h1 { font-size: 42px; margin-bottom: 20px; font-weight: 300; }
+h1 { font-size: 42px; margin-bottom: 20px; font-weight: 300; line-height: 1.2; }
 h2 { font-size: 24px; margin-top: 40px; margin-bottom: 15px; border-bottom: 1px solid #ddd; padding-bottom: 10px;}
 p { margin-bottom: 20px; font-size: 18px; color: #555; }
 
@@ -100,7 +129,6 @@ button.submit-btn:hover { opacity: 0.8; }
     background: #fff; padding: 30px; margin-bottom: 30px;
     border: 1px solid #eee; transition: transform 0.2s;
 }
-.article-card:hover { transform: translateY(-2px); box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
 .article-date { font-size: 12px; color: #999; margin-bottom: 10px; text-transform: uppercase; }
 .article-title { font-size: 24px; margin-bottom: 10px; color: #000; }
 .article-snippet { font-size: 16px; color: #666; }
@@ -108,50 +136,67 @@ button.submit-btn:hover { opacity: 0.8; }
 /* --- FOOTER --- */
 .site-footer {
     position: absolute;
-    bottom: 20px;
+    bottom: 0;
+    left: 0;
     width: 100%;
-    text-align: center;
+    height: 60px; /* Fixed height footer */
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-size: 12px;
     color: #A8A29E;
+    z-index: 10;
 }
 .site-footer a { color: #A8A29E; text-decoration: none; margin-left: 10px; }
-.site-footer a:hover { text-decoration: underline; color: #000; }
 
-/* --- MOBILE --- */
-@media (max-width: 600px) {
-    .nav-links { display: none; } 
-    .button-container { flex-direction: column; }
-    .site-footer { position: relative; margin-top: 40px; }
-}
+/* --- PRIVACY SPECIFIC --- */
+.policy-document { max-width: 600px; font-size: 14px; }
+.policy-document h1 { font-size: 24px; border: none; }
+.policy-document h2 { font-size: 16px; border: none; margin-top: 20px; }
 
 /* =========================================
-   PRIVACY PAGE SPECIFIC STYLES (Restoring the Original Look)
+   MOBILE RESPONSIVENESS (< 768px)
    ========================================= */
-.policy-document {
-    max-width: 600px; /* Tighter width like the modal */
-    font-size: 14px;  /* Smaller body text */
-    color: #333;
-}
+@media (max-width: 768px) {
+    /* 1. Reset Nav Layout */
+    nav { padding: 15px 20px; background-color: #FAFAF9; /* Solid bg on mobile so menu is readable */ }
 
-.policy-document h1 {
-    font-size: 24px; /* Much smaller than main site H1 */
-    font-weight: bold;
-    margin-bottom: 20px;
-    border: none;
-}
+    /* 2. Show Hamburger */
+    .hamburger { display: block; }
 
-.policy-document h2 {
-    font-size: 16px; 
-    margin-top: 20px; 
-    margin-bottom: 10px; 
-    text-transform: uppercase; 
-    color: #000;
-    border: none; /* Remove the underline from main site style */
-    padding: 0;
-}
+    /* 3. Hide Links by default, slide/fade them in when active */
+    .nav-links {
+        display: none; /* Hidden */
+        flex-direction: column;
+        position: absolute;
+        top: 60px; /* Right below the nav bar */
+        left: 0;
+        width: 100%;
+        background-color: #FAFAF9;
+        padding: 20px;
+        border-bottom: 1px solid #ddd;
+        gap: 20px;
+        text-align: center;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
 
-.policy-document p {
-    font-size: 14px;
-    color: #333;
-    margin-bottom: 10px;
+    /* JavaScript will toggle this class */
+    .nav-links.active { display: flex; }
+
+    /* 4. Adjust Home Page */
+    .home-container {
+        /* Allow scrolling if content is tall */
+        height: auto; 
+        min-height: 80vh; 
+        padding-top: 100px; /* clear nav bar */
+    }
+    
+    .logo { width: 280px; margin-bottom: 30px; }
+    
+    /* 5. Typography Adjustments */
+    h1 { font-size: 32px; }
+    .container { margin-top: 80px; padding: 0 20px; }
+    
+    /* 6. Stack Buttons */
+    .button-container { flex-direction: column; width: 100%; align-items: center; }
 }

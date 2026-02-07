@@ -1,11 +1,29 @@
 document.addEventListener("DOMContentLoaded", () => {
     
-    // 1. BACKGROUND ANIMATION (Only runs if on Home Page)
+    // 1. MOBILE MENU TOGGLE
+    const hamburger = document.getElementById('hamburger-btn');
+    const navLinks = document.getElementById('nav-menu');
+
+    if (hamburger && navLinks) {
+        hamburger.addEventListener('click', () => {
+            // Toggle the 'active' class on the menu
+            navLinks.classList.toggle('active');
+            
+            // Toggle icon between ☰ and ✕
+            if (navLinks.classList.contains('active')) {
+                hamburger.textContent = '✕';
+            } else {
+                hamburger.textContent = '☰';
+            }
+        });
+    }
+
+    // 2. BACKGROUND ANIMATION (Only runs if on Home Page)
     if (document.getElementById('bg-animation')) {
         createShapes();
     }
 
-    // 2. RESEARCH LOADER (Only runs if on Research Page)
+    // 3. RESEARCH LOADER (Only runs if on Research Page)
     if (document.getElementById('research-list')) {
         loadResearch();
     }
@@ -13,17 +31,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function createShapes() {
     const container = document.getElementById('bg-animation');
-    const shapeCount = 15; // Number of floating objects
+    const shapeCount = 10; // Reduced count for mobile performance
 
     for (let i = 0; i < shapeCount; i++) {
         let shape = document.createElement('div');
         shape.classList.add('shape');
         
         // Randomize
-        let size = Math.random() * 50 + 20; // 20px to 70px
-        let posX = Math.random() * 100; // 0% to 100% width
-        let delay = Math.random() * 15; // Random start time
-        let duration = Math.random() * 10 + 10; // 10s to 20s float time
+        let size = Math.random() * 50 + 20; 
+        let posX = Math.random() * 100; 
+        let delay = Math.random() * 15; 
+        let duration = Math.random() * 10 + 10; 
         let isCircle = Math.random() > 0.5;
 
         shape.style.width = size + "px";
@@ -55,6 +73,6 @@ async function loadResearch() {
             container.appendChild(card);
         });
     } catch (error) {
-        container.innerHTML = "<p>Research data could not be loaded.</p>";
+        container.innerHTML = "<p>Loading...</p>";
     }
 }

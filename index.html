@@ -6,21 +6,22 @@
     <title>Bounded</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body style="height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; overflow: hidden;">
+<body> <nav>
+        <div class="nav-brand"><a href="index.html">BOUNDED</a></div>
+        
+        <div class="hamburger" id="hamburger-btn">☰</div>
 
-    <nav style="position: absolute; top: 0;">
-        <div class="nav-brand">BOUNDED</div>
-        <div class="nav-links">
+        <div class="nav-links" id="nav-menu">
             <a href="about.html">About</a>
             <a href="services.html">Design</a>
             <a href="research.html">Research</a>
         </div>
     </nav>
 
-    <div id="bg-animation" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;"></div>
+    <div id="bg-animation" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;"></div>
 
-    <div style="z-index: 1; text-align: center;">
-        <img src="logo.png" alt="Bounded Logo" style="width: 350px; display: block; margin: 0 auto 60px;">
+    <div class="home-container" style="z-index: 1; text-align: center;">
+        <img src="logo.png" alt="Bounded Logo" class="logo">
         
         <div class="button-container">
             <a href="#" class="store-btn">

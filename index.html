@@ -3,261 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bounded Designs</title>
-    <style>
-        /* --- RESET & BASE STYLES --- */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            background-color: #FAFAF9; 
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            height: 100vh;
-            width: 100vw;
-            overflow: hidden; 
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        /* --- LOGO --- */
-        .logo-container {
-            margin-bottom: 100px; 
-            animation: fadeIn 1.5s ease-out; 
-        }
-
-        .logo {
-            width: 350px; 
-            height: auto;
-            display: block;
-        }
-
-        /* --- BUTTON CONTAINER --- */
-        .button-container {
-            display: flex;
-            gap: 20px;
-            animation: slideUp 1.2s ease-out;
-        }
-
-        /* --- STORE BUTTONS --- */
-        .store-btn {
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 180px;
-            height: 55px;
-            background-color: #000;
-            color: #fff;
-            border-radius: 10px;
-            border: 2px solid #000;
-            transition: all 0.3s ease;
-        }
-
-        .store-btn:hover {
-            background-color: #fff;
-            color: #000;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-
-        .btn-text {
-            text-align: left;
-            line-height: 1.2;
-        }
-
-        .small-txt {
-            font-size: 10px;
-            text-transform: uppercase;
-            display: block;
-        }
-
-        .big-txt {
-            font-size: 18px;
-            font-weight: bold;
-            display: block;
-        }
-
-        /* --- ICONS --- */
-        .icon-svg {
-            width: 28px;
-            height: 28px;
-            margin-right: 12px;
-            fill: currentColor; 
-        }
-
-        /* --- ANIMATIONS --- */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* --- MOBILE RESPONSIVENESS --- */
-        @media (max-width: 600px) {
-            .button-container {
-                flex-direction: column; 
-            }
-            .logo {
-                width: 280px;
-            }
-        }
-        
-        /* --- FOOTER & PRIVACY STYLES --- */
-        footer {
-            position: absolute;
-            bottom: 20px;
-            font-size: 12px;
-            color: #A8A29E;
-        }
-
-        footer a {
-            color: #A8A29E;
-            text-decoration: none;
-            margin: 0 10px;
-            cursor: pointer;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
-            color: #000;
-        }
-
-        #privacy-modal {
-            display: none; /* Hidden by default */
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(250, 250, 249, 1.0); /* Solid background for readability */
-            overflow-y: auto;
-            padding: 60px 20px;
-            z-index: 1000;
-            animation: fadeIn 0.3s ease-out;
-        }
-
-        .modal-content {
-            max-width: 600px;
-            margin: 0 auto;
-            line-height: 1.6;
-            color: #333;
-            font-size: 14px;
-        }
-        
-        .modal-content h1 {
-            font-size: 24px;
-            margin-bottom: 20px;
-        }
-        
-        .modal-content h2 {
-            font-size: 16px;
-            margin-top: 20px;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-            color: #000;
-        }
-
-        .close-btn {
-            display: inline-block;
-            margin-bottom: 30px;
-            cursor: pointer;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            padding: 10px 0;
-            border-bottom: 1px solid transparent;
-            transition: border-color 0.2s;
-        }
-        
-        .close-btn:hover {
-            border-bottom: 1px solid #000;
-        }
-    </style>
+    <title>Bounded</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body style="height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; overflow: hidden;">
 
-    <div class="logo-container">
-        <img src="logo.png" alt="Bounded App Logo" class="logo">
-    </div>
+    <nav style="position: absolute; top: 0;">
+        <div class="nav-brand">BOUNDED</div>
+        <div class="nav-links">
+            <a href="about.html">About</a>
+            <a href="services.html">Design</a>
+            <a href="research.html">Research</a>
+        </div>
+    </nav>
 
-    <div class="button-container">
+    <div id="bg-animation" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;"></div>
+
+    <div style="z-index: 1; text-align: center;">
+        <img src="logo.png" alt="Bounded Logo" style="width: 350px; display: block; margin: 0 auto 60px;">
         
-        <a href="#" class="store-btn">
-            <svg class="icon-svg" viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
-            <div class="btn-text">
-                <span class="small-txt">Download on the</span>
-                <span class="big-txt">App Store</span>
-            </div>
-        </a>
-
-        <a href="#" class="store-btn">
-            <svg class="icon-svg" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
-                <path d="M14.222 9.374c1.037-.61 1.037-2.137 0-2.748L11.528 5.04 8.32 8l3.207 2.96zm-3.595 2.116L7.583 8.68 1.03 14.73c.201 1.029 1.36 1.61 2.303 1.055zM1 13.396V2.603L6.846 8zM1.03 1.27l6.553 6.05 3.044-2.81L4.096.217C3.153-.337 1.994.245 1.793 1.27z"/>
-            </svg>
-            <div class="btn-text">
-                <span class="small-txt">Get it on</span>
-                <span class="big-txt">Google Play</span>
-            </div>
-        </a>
-
-    </div>
-    
-    <footer>
-        <p>&copy; 2026 Bounded. <a onclick="togglePrivacy()">Privacy Policy</a></p>
-    </footer>
-
-    <div id="privacy-modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="togglePrivacy()">← Back to Home</span>
-            
-            <h1>Privacy Policy</h1>
-            <p><strong>Last Updated: January 29, 2026</strong></p>
-            <br>
-            <p>We respect your privacy. This policy explains the privacy practices for the "Bounded" mobile application.</p>
-
-            <h2>1. Information Collection</h2>
-            <p>Bounded is a standalone utility application. We do not collect, store, transmit, or share any personally identifiable information (PII) or usage data from users.</p>
-
-            <h2>2. App Permissions & Data Usage</h2>
-            <p>The app performs all calculations and visualizations locally on your device. Any data entered into the app (such as measurements or conversion values) remains strictly on your device and is not transmitted to external servers.</p>
-
-            <h2>3. Third-Party Services</h2>
-            <p>Bounded does not use third-party analytics, tracking services, or advertising networks. We do not share data with any external organizations.</p>
-
-            <h2>4. Children’s Privacy</h2>
-            <p>Since our application does not collect any data, it is safe for users of all ages. We do not knowingly collect personal information from children under the age of 13.</p>
-
-            <h2>5. Changes to This Policy</h2>
-            <p>We may update our Privacy Policy from time to time. You are advised to review this page periodically for any changes. Changes are effective immediately after they are posted on this page.</p>
-
-            <h2>6. Contact Us</h2>
-            <p>If you have any questions or suggestions about our Privacy Policy, do not hesitate to contact us at <strong>support@bounded.ca</strong>.</p>
-            
-            <br><br><br>
+        <div class="button-container">
+            <a href="#" class="store-btn">
+                <svg class="icon-svg" viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+                <div class="btn-text"><span class="small-txt">Download on the</span><span class="big-txt">App Store</span></div>
+            </a>
+            <a href="#" class="store-btn">
+                <svg class="icon-svg" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M14.222 9.374c1.037-.61 1.037-2.137 0-2.748L11.528 5.04 8.32 8l3.207 2.96zm-3.595 2.116L7.583 8.68 1.03 14.73c.201 1.029 1.36 1.61 2.303 1.055zM1 13.396V2.603L6.846 8zM1.03 1.27l6.553 6.05 3.044-2.81L4.096.217C3.153-.337 1.994.245 1.793 1.27z"/></svg>
+                <div class="btn-text"><span class="small-txt">Get it on</span><span class="big-txt">Google Play</span></div>
+            </a>
         </div>
     </div>
 
-    <script>
-        function togglePrivacy() {
-            const modal = document.getElementById('privacy-modal');
-            modal.style.display = (modal.style.display === 'block') ? 'none' : 'block';
-            
-            // Optional: Freeze body scrolling when modal is open
-            if (modal.style.display === 'block') {
-                document.body.style.overflow = 'hidden'; 
-                // Allow scrolling inside modal
-                modal.style.overflowY = 'auto'; 
-            } else {
-                document.body.style.overflow = 'hidden'; // Keep main page locked
-            }
-        }
-    </script>
+    <footer class="site-footer">
+        &copy; 2026 Bounded. <a href="privacy.html">Privacy Policy</a>
+    </footer>
 
+    <script src="script.js"></script>
 </body>
 </html>

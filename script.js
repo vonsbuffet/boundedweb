@@ -1,0 +1,60 @@
+document.addEventListener("DOMContentLoaded", () => {
+    
+    // 1. BACKGROUND ANIMATION (Only runs if on Home Page)
+    if (document.getElementById('bg-animation')) {
+        createShapes();
+    }
+
+    // 2. RESEARCH LOADER (Only runs if on Research Page)
+    if (document.getElementById('research-list')) {
+        loadResearch();
+    }
+});
+
+function createShapes() {
+    const container = document.getElementById('bg-animation');
+    const shapeCount = 15; // Number of floating objects
+
+    for (let i = 0; i < shapeCount; i++) {
+        let shape = document.createElement('div');
+        shape.classList.add('shape');
+        
+        // Randomize
+        let size = Math.random() * 50 + 20; // 20px to 70px
+        let posX = Math.random() * 100; // 0% to 100% width
+        let delay = Math.random() * 15; // Random start time
+        let duration = Math.random() * 10 + 10; // 10s to 20s float time
+        let isCircle = Math.random() > 0.5;
+
+        shape.style.width = size + "px";
+        shape.style.height = size + "px";
+        shape.style.left = posX + "%";
+        shape.style.borderRadius = isCircle ? "50%" : "0";
+        shape.style.animationDelay = delay + "s";
+        shape.style.animationDuration = duration + "s";
+
+        container.appendChild(shape);
+    }
+}
+
+async function loadResearch() {
+    const container = document.getElementById('research-list');
+    
+    try {
+        const response = await fetch('research.json');
+        const articles = await response.json();
+
+        articles.forEach(article => {
+            const card = document.createElement('div');
+            card.className = 'article-card';
+            card.innerHTML = `
+                <div class="article-date">${article.date}</div>
+                <h3 class="article-title">${article.title}</h3>
+                <p class="article-snippet">${article.content}</p>
+            `;
+            container.appendChild(card);
+        });
+    } catch (error) {
+        container.innerHTML = "<p>Research data could not be loaded.</p>";
+    }
+}
